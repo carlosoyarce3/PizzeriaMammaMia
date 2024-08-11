@@ -124,6 +124,7 @@ button.more:hover{
     display: flex;
     justify-content: center;
     align-items: center;
+<<<<<<< HEAD
 }
 
 .register{
@@ -140,4 +141,6 @@ form{
     display: flex;
     flex-direction: column;
     gap: 17px;
+=======
+>>>>>>> fe8c20db3897b11d14f216001d843aad63fc747e
 }
