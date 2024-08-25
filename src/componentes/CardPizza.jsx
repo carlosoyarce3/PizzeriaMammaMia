@@ -15,7 +15,6 @@ function CardPizza({ pizzas }) {
             <li key={index}>{ingrediente}</li>
           ))}
         </ul>
-        {/* <span> {pizzas.ingredients.join(", ")}</span> */}
       </div>
       <hr />
       <div className="cardBot">
