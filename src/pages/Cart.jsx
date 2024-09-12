@@ -1,26 +1,28 @@
-import React, { useState } from 'react'
-import pizzaCart from '../pizzas.js'
+import React, { useEffect , useContext} from 'react'
+import { CartContext } from '../context/CartContext';
+
 
 const Cart = () => {
-    const [cart,setCart] = useState(pizzaCart);
-    const total = cart.reduce((acc, pizza) => acc + pizza.price * pizza.quantity,0);
-    console.log(total);
+    const {cart,setCart,total,add} = useContext(CartContext);
+    
+    useEffect(()=>{
+        cart.map((item, index) => {
+            if(item.quantity === 0){
+                cart.splice(index,1);
+                setCart([...cart]);
+            }
+        })
+    },[])
 
-    const add = (item) =>{
-        item.quantity++;
-        setCart([...cart])
-        console.log(item.quantity)
-
-    }
 
     const sub = (item) =>{
         item.quantity--;
         setCart([...cart]);
-        let index = cart.findIndex(indx => indx.id === item.id);
+        
         if(item.quantity==0){
-            const newCart = cart.splice(index,1);
+            let index = cart.findIndex(indx => indx.id === item.id);
+            cart.splice(index,1);
             setCart([...cart]);
-            console.log(cart);
         }
     }
 

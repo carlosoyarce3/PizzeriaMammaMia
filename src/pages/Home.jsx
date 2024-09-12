@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Header from '../componentes/Header'
 import CardPizza from '../componentes/CardPizza'
-//import pizzas from '../pizzas.js'
+
 
 function Home() {
+  
   const [pizzas,setPizzas] = useState([]);
 
   const getPizzas = async()=>{
