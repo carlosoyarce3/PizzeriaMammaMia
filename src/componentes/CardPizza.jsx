@@ -1,9 +1,14 @@
 import React,{useContext} from 'react'
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import { CartContext } from '../context/CartContext';
 
 function CardPizza({ pizzas }) {
   const {finder} = useContext(CartContext);
+  const navegate = useNavigate();
+  const irAPizza = () => {
+    navegate(`/pizza/${pizzas.id}`)
+  }
+
   return (
     <div className='pizzaCard'>
       <div className='cardTop'> 
@@ -23,7 +28,7 @@ function CardPizza({ pizzas }) {
       <div className="cardBot">
         <h3>Precio: ${pizzas.price.toLocaleString()}</h3>
         <div className='btns'>
-          <Link to="/pizza/p001"><button className='more'>Ver Más 👀</button></Link>
+          <button className='more' onClick={irAPizza}>Ver Más 👀</button>
           <button onClick={()=>finder(pizzas)}>Añadir 🛒</button>
         </div>
       </div>

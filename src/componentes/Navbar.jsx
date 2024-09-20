@@ -1,23 +1,27 @@
 import React, { useContext } from 'react'
-import {Link} from 'react-router-dom'
+import {NavLink} from 'react-router-dom'
 import { CartContext } from '../context/CartContext';
+import { UserContext } from '../context/UserContext';
 
 
 function Navbar() {
     const {total} = useContext(CartContext);
-    const Token = false;
+    const {token,logout} = useContext(UserContext);
+    const loggedIn = () => (token ? "active" : "notActive");
+    const loggedOut = () => (token ? "notActive" : "active");
 
   return (
     <div className='nav'>
         <div className='navLeft'>
             <p>Pizzería Mamma Mia!</p>
-            <Link to="/"><button>🍕 Home</button></Link>
-            <Link to="/login"><button>🔐 Login</button></Link>
-            <Link to="/register"><button>🔐 Register</button></Link>
+            <NavLink to="/"><button>🍕 Home</button></NavLink>
+            <NavLink className={loggedOut} to="/login"><button>🔐 Login</button></NavLink>
+            <NavLink className={loggedOut} to="/register"><button>🔐 Register</button></NavLink>
+            <NavLink className={loggedIn} to="/profile"><button>👤 Perfil</button></NavLink>
         </div>
         <div className='navRight'>
-          <Link to="/profile"><button>👤 Perfil</button></Link>
-          <Link to="/cart"><button>🛒 Total: ${total.toLocaleString()}</button></Link>
+          <NavLink className={loggedIn}><button onClick={()=>logout()}>Logout ↪️</button></NavLink>
+          <NavLink to="/cart"><button>🛒 Total: ${total.toLocaleString()}</button></NavLink>
         </div>
 
     </div>

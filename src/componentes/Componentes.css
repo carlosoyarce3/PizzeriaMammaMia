@@ -221,7 +221,7 @@ form{
 }
 
 .pagar button{
-    width: 80%;
+    width: 100%;
     height: 50px;
     font-size: x-large;
 }
@@ -267,6 +267,16 @@ form{
 
 .notFound{
     width: 300px;
+}
+
+.notActive{
+    display: none;
+}
+
+.notLogged{
+    cursor: not-allowed;
+    pointer-events: none;
+    
 }
 
 

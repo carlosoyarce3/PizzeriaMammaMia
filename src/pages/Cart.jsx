@@ -1,9 +1,13 @@
 import React, { useEffect , useContext} from 'react'
+import {NavLink} from 'react-router-dom'
 import { CartContext } from '../context/CartContext';
+import { UserContext } from '../context/UserContext';
 
 
 const Cart = () => {
     const {cart,setCart,total,add} = useContext(CartContext);
+    const {token} = useContext(UserContext);
+    const loggedIn = () => (token ? "logged" : "notLogged")
     
     useEffect(()=>{
         cart.map((item, index) => {
@@ -47,7 +51,7 @@ const Cart = () => {
             </div>
             <div className="pagar">
                 <h2>Total : {total.toLocaleString()}</h2>
-                <button>Pagar</button>
+                <NavLink className={loggedIn}><button>Pagar</button></NavLink>
             </div>
         </div>
 
