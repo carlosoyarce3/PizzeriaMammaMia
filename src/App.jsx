@@ -25,7 +25,7 @@ function App() {
           <Navbar />
           <Routes>
             <Route path="/" element={<Home /> } />
-            <Route path="/login" element={<LoginPage />} />
+            <Route path="/login" element={token ? <Home/> : <LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/pizza/:id" element={<Pizza />} />

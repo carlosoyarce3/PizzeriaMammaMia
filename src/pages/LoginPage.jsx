@@ -1,64 +1,30 @@
-import React from 'react';
-import { useState } from "react";
+import React, { useContext } from 'react';
+import { UserContext } from '../context/UserContext';
 
 
 function LoginPage() {
 
-    const [datos, setDatos] = useState({
-        email: "",
-        password:"",
-    });
-
-    const actualizarFormulario = (event) => {
-        setDatos({
-            ...datos,
-            [event.target.name] : event.target.value,
-        })
-    }
-
-    const validate = () => {
-        if(!datos.email||!datos.password){
-            alert("Debe llenar todos los campos")
-        }
-        else if(datos.password.length < 6){
-            alert("La contraseña debe tener al menos 6 caracteres")
-        }
-        else{
-            setDatos({
-                email: "",
-                password:"",
-            })
-            alert("Los datos son correctos!")
-        }
-        
-
-    }
-
-    const enviarFormulario = (e) => {
-        e.preventDefault();
-        validate();
-
-    }
+    const {login,email,setEmail,password,setPassword} = useContext(UserContext)
 
 
   return (
     <div className='register'>
         <h1>Login</h1>
-        <form onSubmit={enviarFormulario}>
+        <form onSubmit={login}>
             <label htmlFor="email">Email:</label>
             <input 
             type="email" 
             name='email' 
-            value={datos.email} 
+            value={email} 
             placeholder='Ingrese su Email' 
-            onChange={actualizarFormulario}/>
+            onChange={(e) => setEmail(e.target.value)}/>
             <label htmlFor="pass">Contraseña:</label>
             <input 
             type="password" 
             name='password' 
-            value={datos.password} 
+            value={password} 
             placeholder="Ingrese su Contraseña" 
-            onChange={actualizarFormulario}/>
+            onChange={(e) => setPassword(e.target.value)}/>
             <button type="submit">Enviar</button>
         </form>
 

@@ -30,6 +30,24 @@ const Cart = () => {
         }
     }
 
+    const checkout = async () => {
+        const result = await fetch("http://localhost:5000/api/checkouts", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${localStorage.token}`,
+            },
+            body: JSON.stringify({
+                cart,
+            }),
+        });
+        const data = await result.json();
+        alert(data?.error || "Payment successful!!");
+            
+
+
+    }
+
     return (
         <div className='cartDisp'>
             <div className='cartContainer'>
@@ -51,7 +69,7 @@ const Cart = () => {
             </div>
             <div className="pagar">
                 <h2>Total : {total.toLocaleString()}</h2>
-                <NavLink className={loggedIn}><button>Pagar</button></NavLink>
+                <NavLink className={loggedIn}><button onClick={()=>{checkout()}}>Pagar</button></NavLink>
             </div>
         </div>
 
